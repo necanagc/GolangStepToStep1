@@ -1,6 +1,9 @@
 package main
 
-import "slices"
+import (
+	"slices"
+	"strings"
+)
 
 type Player struct {
 	Name    string
@@ -37,7 +40,21 @@ func goalsSort(players []Player) []Player {
 		} else if a.Goals < b.Goals {
 			return 1
 		} else {
-			return 0
+			return strings.Compare(a.Name, b.Name)
+		}
+	})
+
+	return players
+}
+
+func ratingSort(players []Player) []Player {
+	slices.SortFunc(players, func(a, b Player) int {
+		if a.Rating > b.Rating {
+			return -1
+		} else if a.Rating < b.Rating {
+			return 1
+		} else {
+			return strings.Compare(a.Name, b.Name)
 		}
 	})
 
