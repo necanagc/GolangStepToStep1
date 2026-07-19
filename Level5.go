@@ -16,8 +16,10 @@ type Player struct {
 func (p *Player) calculateRating() {
 	if p.Misses != 0 {
 		p.Rating = (float64(p.Goals) + float64(p.Assists)/2) / float64(p.Misses)
+	} else {
+		p.Rating = float64(p.Goals) + float64(p.Assists)/2
 	}
-	p.Rating = float64(p.Goals) + float64(p.Assists)/2
+
 }
 
 func NewPlayer(name string, goals, misses, assists int) Player {
