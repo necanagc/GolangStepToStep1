@@ -60,3 +60,21 @@ func ratingSort(players []Player) []Player {
 
 	return players
 }
+
+func gmSort(players []Player) []Player {
+	slices.SortFunc(players, func(a, b Player) int {
+
+		a1 := float64(a.Goals) / float64(a.Misses)
+		b1 := float64(b.Goals) / float64(b.Misses)
+
+		if a1 > b1 {
+			return -1
+		} else if a1 < b1 {
+			return 1
+		} else {
+			return strings.Compare(a.Name, b.Name)
+		}
+	})
+
+	return players
+}
